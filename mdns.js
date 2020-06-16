@@ -16,25 +16,26 @@ class MdnsServer {
     
         // listen for response events from server
         mdns.on('response', function(response) {
-          console.log('mDNS --> got a response packet');
+          // console.log('mDNS --> got a response packet');
           let a = []
           if (response.answers) {
             a = a.concat(response.answers)
           }
           //Filter on Glasses 3
           a.filter((answer) => answer.name.includes(G3ServiceType)).forEach((answer) => {
+            console.log('Got a Response packet:');
             console.log(`Name: ${answer.name}, type: ${answer.type}, data: ${answer.data}`);
           })
         });
     
         // listen for query events from server
         mdns.on('query', function(query) {
-          console.log('got a query packet:');
+          // console.log('got a query packet:');
           let q = [];
           if (query.questions) {
             q = q.concat(query.questions);
           }
-          console.log(q);
+          // console.log(q);
         });
     
         // listen for the server being destroyed
@@ -47,11 +48,12 @@ class MdnsServer {
         mdns.on('ready', () => {
           mdns.query({
             questions: [{
-              //name: '_tobii-g3api._tcp.local',
-              name: G3ServiceType,
-              type: 'AAAA'
+              name: '_tobii-g3api._tcp.local',
+              // name: G3ServiceType,
+              type: 'PTR'
             }]
           });
+          
         });
     
         mdns.initServer();

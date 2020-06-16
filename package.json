@@ -5,8 +5,13 @@
   "main": "service.js",
   "dependencies": {
     "bonjour": "^3.5.0",
+    "dns-discovery": "^6.2.3",
     "dnssd2": "^1.0.0",
+    "libp2p-mdns": "^0.14.1",
+    "mdns-discovery": "^0.2.6",
     "mdns-server": "^1.0.8",
+    "peer-id": "^0.13.12",
+    "polo": "^0.8.1",
     "spread-the-word": "^0.8.4"
   },
   "devDependencies": {},
